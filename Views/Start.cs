@@ -19,12 +19,12 @@ namespace Survival.Views
 
             this.game = game;
 
-            startButton.Click += StartButton_Click;
+            //startButton.Click += StartButton_Click;
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            game.Start("2*2");
+            //game.Start("2*2");
         }
     }
 }

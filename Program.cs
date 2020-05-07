@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Survival.Views;
-using MainMenu = Survival.Views;
-
 
 namespace Survival
 {

@@ -1,9 +1,7 @@
-﻿namespace Survival
+namespace Survival
 {
-    class Bomb : ICell
+    public class Wall : ICell
     {
-        public readonly int x;
-        public readonly int y;
         public string GetImageFileName()
         {
             throw new System.NotImplementedException();
@@ -21,11 +19,7 @@
 
         public void ChangeInConflict(ICell conflictedObject)
         {
-            foreach (var (i, j) in Game.Neighbours)
-            {
-                Game.Map[x + i, y + j] = new ColorCell(State.Empty, Color.Gray);
-            }
+            return;
         }
-        
     }
 }
