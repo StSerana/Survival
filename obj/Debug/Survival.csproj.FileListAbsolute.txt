@@ -1,0 +1,10 @@
+C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\Survival.exe.config
+C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\Survival.exe
+C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\Survival.pdb
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.csprojAssemblyReference.cache
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Properties.Resources.resources
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.csproj.GenerateResource.cache
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.csproj.CoreCompileInputs.cache
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.exe
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.pdb
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Views.Start.resources
