@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Survival.Views;
@@ -17,8 +18,8 @@ namespace Survival
         public static bool IsOver;
         public static readonly (int,int)[] Neighbours = {(0, -1), (0, 1), (-1, 0), (1, 0)};
 
-        public static int MapWidth => Map.GetLength(0);
-        public static int MapHeight => Map.GetLength(1);
+        private static int MapWidth => Map.GetLength(0);
+        private static int MapHeight => Map.GetLength(1);
 
         private static void CreateMap(int width, int height)
         {
@@ -31,25 +32,35 @@ namespace Survival
             Ai = new AI(Color.Red);
         }
 
-        public void Start()
+        public static void Start(int x, int y)
         {
-            CreateMap(4,4);
+            CreateMap(x,y);
             CreatePlayers();
-            
+            //здесь идет смена стадии старта на стадию непосредственно игры  
         }
 
-        private bool IsHumanWinner()
+        public static void Act(Player player)
+        {
+            Map[player.X, player.Y].Act(player);
+        }
+
+        public static void ChangeMap(Player player)
+        {
+            Map[player.X, player.Y].ChangeInConflict(player);
+        }
+        
+
+        public static bool IsHumanWinner()
         {
             var queue = new Queue<Point>();
             var visited = new HashSet<Point>();
-            visited.Add(new Point {X = 0, Y = 0});
             queue.Enqueue(new Point { X = 0, Y = 0 });
             while (queue.Count != 0)
             {
                 var point = queue.Dequeue();
-                if (point.X < 0 || point.X >= Game.MapWidth || point.Y < 0 || point.Y >= Game.MapHeight) continue;
+                if (point.X < 0 || point.X >= MapWidth || point.Y < 0 || point.Y >= MapHeight) continue;
                 if (visited.Contains(point)) continue;
-                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).color == Color.Red) return false;
+                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).color != Color.Blue) return false;
                 visited.Add(point);
                 
                 for (var dy = -1; dy <= 1; dy++)
@@ -62,27 +73,40 @@ namespace Survival
             return true;
         }
 
-        public string MapToString()
+        public static IEnumerable<string> MapToString()
         {
-            var map = new StringBuilder();
             for (var x = 0; x < MapWidth; x++)
             {
+                var map = new StringBuilder();
                 for (var y = 0; y < MapHeight; y++)
                 {
-                    if (Map[x, y] is Wall)
-                        map.Append("W");
-                    if (Map[x, y] is Bomb)
-                        map.Append("B");
-                    if (Map[x, y] is ColorCell && ((ColorCell) Map[x, y]).color == Color.Red)
-                        map.Append("A" + ((ColorCell) Map[x, y]).state);
-                    else
-                        map.Append("H" + ((ColorCell) Map[x, y]).state);
+                    switch (Map[x, y])
+                    {
+                        case Wall _:
+                            map.Append("W");
+                            break;
+                        case Bomb _:
+                            map.Append("B");
+                            break;
+                        case ColorCell _ when ((ColorCell) Map[x, y]).color == Color.Red:
+                            map.Append("A" + (int)((ColorCell) Map[x, y]).state);
+                            break;
+                        case ColorCell _ when ((ColorCell) Map[x, y]).color == Color.Gray:
+                            map.Append("E" + (int)((ColorCell) Map[x, y]).state);
+                            break;
+                        default:
+                            map.Append("H" + (int)((ColorCell) Map[x, y]).state);
+                            break;
+                    }
                 }
-                map.Append("\n");
-            }
 
-            return map.ToString();
+                yield return map.ToString();
+            }
         }
-        
+
+        public static bool MapsAreEqual(IEnumerable<string> m1, IReadOnlyList<string> m2)
+        {
+            return !m1.Where((t, i) => !t.Equals(m2[i])).Any();
+        }
     }
 }

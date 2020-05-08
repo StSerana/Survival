@@ -6,28 +6,12 @@ namespace Survival.Views
     public partial class MainForm : Form
     {
         private Game game;
+        private readonly Timer timer;
+
         public MainForm()
         {
             InitializeComponent();
-            
-            game = new Game();
-
-            ShowStartScreen();
-        }
-
-        private void ShowStartScreen()
-        {
-            HideScreens();
-            Start.Configure(game);
-            Start.Show();
-        }
-        
-        private void HideScreens()
-        {
-            Start.Hide();
-            //arrangingControl.Hide();
-           // battleControl.Hide();
-            //finishedControl.Hide();
+            Game.Start(4, 4);
         }
     }
 }

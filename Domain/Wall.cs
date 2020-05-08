@@ -12,12 +12,12 @@ namespace Survival
             throw new System.NotImplementedException();
         }
 
-        public CreatureCommand Act(Player player)
+        public void Act(Player player)
         {
-            return new CreatureCommand();
+            throw new System.NotImplementedException();
         }
 
-        public void ChangeInConflict(ICell conflictedObject)
+        public void ChangeInConflict(Player conflictedObject)
         {
             return;
         }

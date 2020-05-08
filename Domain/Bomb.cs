@@ -2,8 +2,6 @@
 {
     class Bomb : ICell
     {
-        public readonly int x;
-        public readonly int y;
         public string GetImageFileName()
         {
             throw new System.NotImplementedException();
@@ -14,16 +12,16 @@
             throw new System.NotImplementedException();
         }
 
-        public CreatureCommand Act(Player player)
+        public void Act(Player player)
         {
-            return new CreatureCommand();
+            throw new System.NotImplementedException();
         }
 
-        public void ChangeInConflict(ICell conflictedObject)
+        public void ChangeInConflict(Player player)
         {
             foreach (var (i, j) in Game.Neighbours)
             {
-                Game.Map[x + i, y + j] = new ColorCell(State.Empty, Color.Gray);
+                Game.Map[player.X + i, player.Y + j] = new ColorCell(State.Empty, Color.Gray);
             }
         }
         

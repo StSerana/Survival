@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_Survival.1097158652.00" t="ExcludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\админ\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\админ\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Survival.1234991359.00" t="ExcludeRecursive" />
+    <e p="C:\Users\админ\Documents\sharp_projects\Survival" t="IncludeRecursive">
       <e p="App.config" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Domain" t="Include">
@@ -33,7 +33,8 @@
       <e p="Survival.csproj" t="IncludeRecursive" />
       <e p="Survival.sln" t="IncludeFlat" />
       <e p="Tests" t="Include">
-        <e p="MapTests.cs" t="Include" />
+        <e p="ColorCell_Should.cs" t="Include" />
+        <e p="Map_Should.cs" t="Include" />
       </e>
       <e p="Views" t="Include">
         <e p="MainForm.cs" t="Include" />

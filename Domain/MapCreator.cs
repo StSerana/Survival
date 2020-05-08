@@ -5,16 +5,17 @@
         public static ICell[,] CreateMap(int width, int height)
         {
             var map = new ICell[width, height];
-            for (var x = 0; x < width; x++)
-            for (var y = 0; y < height; y++)
+            for (var dx = 0; dx < width; dx++)
+            for (var dy = 0; dy < height; dy++)
             {
-                if(x == 0 || y == 0 || x == width - 1 || y == height - 1)
-                    map[x, y] = new Wall();
-                map[x, y] = new ColorCell(State.Empty, Color.Gray){x = x, y = y};
+                if(dx == 0 || dy == 0 || dx == width - 1 || dy == height - 1)
+                    map[dx, dy] = new Wall();
+                else
+                    map[dx, dy] = new ColorCell(State.Empty, Color.Gray);
             }
-            map[0, 0] = new ColorCell(State.Three, Color.Red);
+            map[1, 1] = new ColorCell(State.Three, Color.Red);
             
-            map[width - 1, height - 1] = new ColorCell(State.Three, Color.Blue);
+            map[width - 2, height - 2] = new ColorCell(State.Three, Color.Blue);
                 
             return map;
         }

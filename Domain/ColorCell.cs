@@ -2,10 +2,8 @@
 {
     public class ColorCell : ICell
     {
-        public readonly Color color;
-        public readonly State state;
-        public int x;
-        public int y;
+        public Color color;
+        public State state;
 
         public ColorCell(State state, Color color)
         {
@@ -22,36 +20,46 @@
             return 1;
         }
 
-        public CreatureCommand Act(Player player)
+        public void Act(Player player)
         {
-            if(color != player.Color) return new CreatureCommand();
+            if (color != player.Color) return;
             switch (state)
             {
                 case State.One:
                 case State.Two:
-                    return new CreatureCommand{TransformTo = new ColorCell(state + 1, color)};
+                    Game.Map[player.X, player.Y] = new ColorCell(state + 1, color);
+                    break;
                 case State.Three:
                 {
                     foreach (var (item1, item2) in Game.Neighbours)
-                        Game.Map[x + item1, y + item2].ChangeInConflict(this); 
-                    Game.Map[x, y] = new ColorCell(State.Empty, Color.Gray){x = x, y = y};
+                    {
+                        var current = new Player(player.Color){X = player.X, Y = player.Y};
+                        current.X += item1;
+                        current.Y += item2;
+                        Game.ChangeMap(current);
+                    }
+                    Game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
                     break;
                 }
             }
-
-            return new CreatureCommand{TransformTo = new ColorCell(State.Empty, Color.Gray){x = x, y = y}};
         }
 
-        public void ChangeInConflict(ICell conflictedObject)
+        public void ChangeInConflict(Player player)
         {
-            if (!(conflictedObject is ColorCell)) return;
             if(state != State.Three)
-                Game.Map[x, y] = new ColorCell(state + 1, ((ColorCell) conflictedObject).color){x = x, y = y};
-            else 
+                Game.Map[player.X, player.Y] = new ColorCell(state + 1, player.Color);
+            else
+            {
                 foreach (var (item1, item2) in Game.Neighbours)
                 {
-                    Game.Map[x + item1, y + item2].ChangeInConflict(this);
+                    var current = player;
+                    current.X += item1;
+                    current.Y += item2;
+                    Game.ChangeMap(current);
                 }
+                Game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+            }
+                
         }
     }
 }
