@@ -2,8 +2,11 @@
 using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using Survival;
+using FluentAssertions;
+//дописать fluent
 
-namespace Survival.Tests
+namespace SurvivalTests
 {
     [TestFixture]
     public class Bomb_Should
@@ -12,6 +15,7 @@ namespace Survival.Tests
         public static void ClearCellsInTheCenterOfMapTest()
         {
             var expectedMap = new List<string>{"WWWWW", "WH1E0H1W","WE0E0E0W","WH2E0H2W","WWWWW"};
+            // повторяющиеся константы можно в отдну переменную выделить
             Game.Start(5,5);
             for (var x = 0; x < 5; x++)
             for (var y = 0; y < 5; y++)
@@ -33,7 +37,7 @@ namespace Survival.Tests
         public static void ClearCellNearTheWallsTest()
         {
             var expectedMap = new List<string>{"WWWWW", "WE0E0H2W","WE0H2H1W","WH1H1H1W","WWWWW"};
-            Game.Start(5,5);
+            Game.Start(5,5); //отступ???
             for (var x = 0; x < 5; x++)
             for (var y = 0; y < 5; y++)
             {

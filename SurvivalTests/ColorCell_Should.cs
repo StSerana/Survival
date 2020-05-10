@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Survival;
+using FluentAssertions;
 
-namespace Survival.Tests
+namespace SurvivalTests
 {
     [TestFixture]
     public class ColorCell_Should
@@ -26,7 +28,8 @@ namespace Survival.Tests
             Game.Human.Y = 1;
             Game.Act(Game.Human);
             var actualMap = Game.MapToString().ToList();
-            Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            //Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            expectedMap.Should().Contain(actualMap);
         }
         
         [Test]
@@ -38,7 +41,8 @@ namespace Survival.Tests
             Game.Ai.Y = 1;
             Game.Act(Game.Ai);
             var actualMap = Game.MapToString().ToList();
-            Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            //Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            expectedMap.Should().Contain(actualMap);
         }
 
         [Test]
@@ -53,7 +57,8 @@ namespace Survival.Tests
             Game.Human.Y = 2;
             Game.Act(Game.Human);
             var actualMap = Game.MapToString().ToList();
-            Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            //Assert.IsTrue(Game.MapsAreEqual(expectedMap, actualMap));
+            expectedMap.Should().Contain(actualMap);
         }
     }
 }

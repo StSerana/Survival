@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-      <HintPath>packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,8 +52,6 @@
     <Compile Include="Domain\Bomb.cs" />
     <Compile Include="Domain\CellProperties.cs" />
     <Compile Include="Domain\ColorCell.cs" />
-    <Compile Include="Domain\CreatureAnimation.cs" />
-    <Compile Include="Domain\CreatureCommand.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\ICell.cs" />
     <Compile Include="Domain\MapCreator.cs" />
@@ -64,9 +59,6 @@
     <Compile Include="Domain\Wall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Bomb_Should.cs" />
-    <Compile Include="Tests\ColorCell_Should.cs" />
-    <Compile Include="Tests\Map_Should.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

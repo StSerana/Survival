@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Survival;
+using FluentAssertions;
+//дописать fluent
 
-namespace Survival.Tests
+namespace SurvivalTests
 {
     [TestFixture]
     public class Map_Should
@@ -41,6 +44,6 @@ namespace Survival.Tests
             var answer = Game.IsHumanWinner();
             Assert.IsFalse(answer);
         }
-
+        //лишний отступ
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Survival
 {
+    // Каждый enum в отдельный файл - CellState, CellColor
     public enum State
     {
         Empty = 0,

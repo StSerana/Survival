@@ -10,6 +10,7 @@ namespace Survival
 {
     public class Game
     {
+        // сеттеры закрыть, >>статику убрать<< (кроме Neighbours и т.п.)
         public static ICell[,] Map;
         public static Player Human;
         public static Player Ai;
@@ -60,7 +61,8 @@ namespace Survival
                 var point = queue.Dequeue();
                 if (point.X < 0 || point.X >= MapWidth || point.Y < 0 || point.Y >= MapHeight) continue;
                 if (visited.Contains(point)) continue;
-                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).color != Color.Blue) return false;
+                // лучше название цвета заменить на говорящее значение, а потом при отрисовке в соответствии с состоянием выбирать цвет
+                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).Color != Color.Blue) return false;
                 visited.Add(point);
                 
                 for (var dy = -1; dy <= 1; dy++)
@@ -72,7 +74,7 @@ namespace Survival
 
             return true;
         }
-
+        // Если это только в тестах используется, то лучше сделать какой-нибудь GameTestExtensions и туда это засунуть
         public static IEnumerable<string> MapToString()
         {
             for (var x = 0; x < MapWidth; x++)
@@ -88,14 +90,14 @@ namespace Survival
                         case Bomb _:
                             map.Append("B");
                             break;
-                        case ColorCell _ when ((ColorCell) Map[x, y]).color == Color.Red:
-                            map.Append("A" + (int)((ColorCell) Map[x, y]).state);
+                        case ColorCell _ when ((ColorCell) Map[x, y]).Color == Color.Red:
+                            map.Append("A" + (int)((ColorCell) Map[x, y]).State);
                             break;
-                        case ColorCell _ when ((ColorCell) Map[x, y]).color == Color.Gray:
-                            map.Append("E" + (int)((ColorCell) Map[x, y]).state);
+                        case ColorCell _ when ((ColorCell) Map[x, y]).Color == Color.Gray:
+                            map.Append("E" + (int)((ColorCell) Map[x, y]).State);
                             break;
                         default:
-                            map.Append("H" + (int)((ColorCell) Map[x, y]).state);
+                            map.Append("H" + (int)((ColorCell) Map[x, y]).State);
                             break;
                     }
                 }
@@ -104,8 +106,10 @@ namespace Survival
             }
         }
 
+        // Глагол в начале названия метода. Снова метод, актуальный только для тестирования
         public static bool MapsAreEqual(IEnumerable<string> m1, IReadOnlyList<string> m2)
         {
+            // Убрать отрицаение и вместо Any сделать All
             return !m1.Where((t, i) => !t.Equals(m2[i])).Any();
         }
     }

@@ -12,6 +12,7 @@ namespace Survival.Views
         {
             InitializeComponent();
             Game.Start(4, 4);
+            
         }
     }
 }
