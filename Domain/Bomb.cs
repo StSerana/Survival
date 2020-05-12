@@ -15,21 +15,21 @@
             throw new System.NotImplementedException();
         }
 
-        public void Act(Player player)
+        public void Act(Game game, Player player)
         {
             throw new System.NotImplementedException();
         }
 
-        public void ChangeInConflict(Player player)
+        public void ChangeInConflict(Game game, Player player)
         {
             foreach (var (i, j) in Game.Neighbours)
             {
-                if (Game.Map[player.X + i, player.Y + j] is Wall) continue;
-                Game.Map[player.X + i, player.Y + j] = new ColorCell(State.Empty, Color.Gray);
+                if (game.Map[player.X + i, player.Y + j] is Wall) continue;
+                game.Map[player.X + i, player.Y + j] = new ColorCell(State.Empty, Color.Gray);
             }
             // В ColorCell можно создать статическое свойство, возвращающее new ColorCell(State.Empty, Color.Grey);
             // Тогда будет удобно делать ColorCell.Grey;
-            Game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+            game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
         }
         
     }

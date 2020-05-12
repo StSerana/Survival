@@ -17,6 +17,17 @@
         <e p="Player.cs" t="Include" />
         <e p="Wall.cs" t="Include" />
       </e>
+      <e p="Files" t="Include">
+        <e p="BlueOne.jpg" t="Include" />
+        <e p="BlueThree.jpg" t="Include" />
+        <e p="BlueTwo.jpg" t="Include" />
+        <e p="Bomb.jpg" t="Include" />
+        <e p="RedOne.jpg" t="Include" />
+        <e p="RedThree.jpg" t="Include" />
+        <e p="RedTwo.jpg" t="Include" />
+        <e p="StartBtn.png" t="Include" />
+        <e p="Wall.jpg" t="Include" />
+      </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="packages.config" t="Include" />
@@ -27,6 +38,18 @@
         <e p="Resources.resx" t="Include" />
         <e p="Settings.Designer.cs" t="Include" />
         <e p="Settings.settings" t="Include" />
+      </e>
+      <e p="Resources" t="Include">
+        <e p="BlueOne.jpg" t="Include" />
+        <e p="BlueThree.jpg" t="Include" />
+        <e p="BlueTwo.jpg" t="Include" />
+        <e p="Bomb.jpg" t="Include" />
+        <e p="Empty.jpg" t="Include" />
+        <e p="RedOne.jpg" t="Include" />
+        <e p="RedThree.jpg" t="Include" />
+        <e p="RedTwo.jpg" t="Include" />
+        <e p="StartBtn.png" t="Include" />
+        <e p="Wall.jpg" t="Include" />
       </e>
       <e p="Survival.csproj" t="IncludeRecursive" />
       <e p="Survival.sln" t="IncludeFlat" />
@@ -43,11 +66,12 @@
         <e p="SurvivalTests.csproj" t="IncludeRecursive" />
       </e>
       <e p="Views" t="Include">
+        <e p="GameForm.cs" t="Include" />
+        <e p="GameForm.Designer.cs" t="Include" />
+        <e p="GameForm.resx" t="Include" />
         <e p="MainForm.cs" t="Include" />
         <e p="MainForm.Designer.cs" t="Include" />
-        <e p="Start.cs" t="Include" />
-        <e p="Start.Designer.cs" t="Include" />
-        <e p="Start.resx" t="Include" />
+        <e p="MainForm.resx" t="Include" />
       </e>
     </e>
   </component>

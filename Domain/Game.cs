@@ -11,47 +11,47 @@ namespace Survival
     public class Game
     {
         // сеттеры закрыть, >>статику убрать<< (кроме Neighbours и т.п.)
-        public static ICell[,] Map;
-        public static Player Human;
-        public static Player Ai;
-        public static bool HumanTurn = true;
+        public ICell[,] Map;
+        public Player Human;
+        public Player Ai;
+        public bool HumanTurn = true;
         
-        public static bool IsOver;
+        public bool IsOver;
         public static readonly (int,int)[] Neighbours = {(0, -1), (0, 1), (-1, 0), (1, 0)};
 
-        private static int MapWidth => Map.GetLength(0);
-        private static int MapHeight => Map.GetLength(1);
+        public int MapWidth => Map.GetLength(0);
+        public int MapHeight => Map.GetLength(1);
 
-        private static void CreateMap(int width, int height)
+        private void CreateMap(int width, int height)
         {
             Map = MapCreator.CreateMap(width, height);
         }
 
-        private static void CreatePlayers()
+        private void CreatePlayers()
         {
             Human = new Player(Color.Blue);
             Ai = new AI(Color.Red);
         }
 
-        public static void Start(int x, int y)
+        public void Start(int x, int y)
         {
             CreateMap(x,y);
             CreatePlayers();
             //здесь идет смена стадии старта на стадию непосредственно игры  
         }
 
-        public static void Act(Player player)
+        public void Act(Player player)
         {
-            Map[player.X, player.Y].Act(player);
+            Map[player.X, player.Y].Act(this, player);
         }
 
-        public static void ChangeMap(Player player)
+        public void ChangeMap(Player player)
         {
-            Map[player.X, player.Y].ChangeInConflict(player);
+            Map[player.X, player.Y].ChangeInConflict(this, player);
         }
         
 
-        public static bool IsHumanWinner()
+        public bool IsHumanWinner()
         {
             var queue = new Queue<Point>();
             var visited = new HashSet<Point>();
@@ -75,7 +75,7 @@ namespace Survival
             return true;
         }
         // Если это только в тестах используется, то лучше сделать какой-нибудь GameTestExtensions и туда это засунуть
-        public static IEnumerable<string> MapToString()
+        public IEnumerable<string> MapToString()
         {
             for (var x = 0; x < MapWidth; x++)
             {
@@ -107,7 +107,7 @@ namespace Survival
         }
 
         // Глагол в начале названия метода. Снова метод, актуальный только для тестирования
-        public static bool MapsAreEqual(IEnumerable<string> m1, IReadOnlyList<string> m2)
+        public static bool AreEqual(IEnumerable<string> m1, IReadOnlyList<string> m2)
         {
             // Убрать отрицаение и вместо Any сделать All
             return !m1.Where((t, i) => !t.Equals(m2[i])).Any();

@@ -5,14 +5,17 @@ namespace Survival.Views
 {
     public partial class MainForm : Form
     {
-        private Game game;
-        private readonly Timer timer;
-
         public MainForm()
         {
             InitializeComponent();
-            Game.Start(4, 4);
             
+        }
+
+        private void StartBtn_Click(object sender, EventArgs e)
+        {
+            var gameForm = new GameForm();
+            gameForm.Show();
+            //Hide();
         }
     }
 }

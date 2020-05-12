@@ -31,14 +31,14 @@
             return 1;
         }
 
-        public void Act(Player player)
+        public void Act(Game game, Player player)
         {
             if (Color != player.Color) return;
             switch (State)
             {
                 case State.One:
                 case State.Two:
-                    Game.Map[player.X, player.Y] = new ColorCell(State + 1, Color);
+                    game.Map[player.X, player.Y] = new ColorCell(State + 1, Color);
                     break;
                 case State.Three:
                 {
@@ -48,18 +48,18 @@
                         var current = new Player(player.Color){X = player.X, Y = player.Y};
                         current.X += item1;
                         current.Y += item2;
-                        Game.ChangeMap(current);
+                        game.ChangeMap(current);
                     }
-                    Game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+                    game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
                     break;
                 }
             }
         }
 
-        public void ChangeInConflict(Player player)
+        public void ChangeInConflict(Game game, Player player)
         {
             if (State != State.Three)
-                Game.Map[player.X, player.Y] = new ColorCell(State + 1, player.Color);
+                game.Map[player.X, player.Y] = new ColorCell(State + 1, player.Color);
             else
             {
                 // повторение кода выше
@@ -68,9 +68,9 @@
                     var current = player;
                     current.X += item1;
                     current.Y += item2;
-                    Game.ChangeMap(current);
+                    game.ChangeMap(current);
                 }
-                Game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+                game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
             }
                 
         }

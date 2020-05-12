@@ -12,12 +12,12 @@ namespace Survival
             throw new System.NotImplementedException();
         }
 
-        public void Act(Player player)
+        public void Act(Game game, Player player)
         {
             throw new System.NotImplementedException();
         }
 
-        public void ChangeInConflict(Player conflictedObject)
+        public void ChangeInConflict(Game game, Player conflictedObject)
         {
             return;
         }

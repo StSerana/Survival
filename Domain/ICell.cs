@@ -4,8 +4,8 @@ namespace Survival
     {
         string GetImageFileName();
         int GetDrawingPriority();
-        void Act(Player player);
+        void Act(Game game, Player player);
 
-        void ChangeInConflict(Player conflictedObject);
+        void ChangeInConflict(Game game, Player conflictedObject);
     }
 }
