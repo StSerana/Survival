@@ -35,7 +35,7 @@ namespace SurvivalTests
                 else
                     game.Map[x, y] = new ColorCell(State.One, Color.Blue);
             }
-            Assert.IsTrue(game.IsHumanWinner());
+            Assert.IsTrue(game.IsPlayerWinner(game.Human));
         }
         
         [Test]
@@ -44,7 +44,7 @@ namespace SurvivalTests
             var game = new Game();
             game.Start(4, 4);
             foreach (var line in game.MapToString()) Console.WriteLine(line);
-            var answer = game.IsHumanWinner();
+            var answer = game.IsPlayerWinner(game.Ai);
             Assert.IsFalse(answer);
         }
         //лишний отступ

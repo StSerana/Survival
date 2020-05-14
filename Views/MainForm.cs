@@ -7,15 +7,19 @@ namespace Survival.Views
     {
         public MainForm()
         {
+            FormClosing += (sender, args) =>
+            {
+                var result = MessageBox.Show("Действительно закрыть?", "", MessageBoxButtons.YesNo);
+                if (result != DialogResult.Yes) args.Cancel = true;
+            };
             InitializeComponent();
-            
         }
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            var gameForm = new GameForm();
+            var gameForm = new GameForm(this);
             gameForm.Show();
-            //Hide();
+            Hide();
         }
     }
 }

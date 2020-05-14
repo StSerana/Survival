@@ -15,3 +15,6 @@ C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.pdb
 C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Views.MainForm.resources
 C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Views.GameForm.resources
 C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Properties.Resources.resources
+C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\Interop.WMPLib.dll
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.csproj.CopyComplete

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Survival.Views
@@ -10,19 +7,27 @@ namespace Survival.Views
     public partial class GameForm : Form
     {
         private readonly Game game;
-        public GameForm()
+        public GameForm(MainForm mainForm)
         {
             game = new Game();
             game.Start(5,5);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Controls.Add(DrawMap());
-            ClientSize = new Size((game.MapHeight + 1) * 100, (game.MapWidth + 1) * 100);
+            var soundPlayer = new WMPLib.WindowsMediaPlayer
+            {
+                URL = @"C:\Users\админ\Documents\sharp_projects\Survival\Resources\bgSound.mp3"
+            };
+           soundPlayer.controls.play();
+           FormClosing += (sender, args) =>
+            {
+                mainForm.Show();
+            };
             InitializeComponent();
         }
 
+
         private TableLayoutPanel DrawMap()
         {
-            var layout = new TableLayoutPanel {ColumnCount = game.MapHeight, RowCount = game.MapWidth, Height = (game.MapHeight + 1) * 100, Width = (game.MapWidth + 1) * 100};
+            var map = new TableLayoutPanel {ColumnCount = game.MapHeight, RowCount = game.MapWidth, Height = (game.MapHeight + 1) * 100, Width = (game.MapWidth + 1) * 100, Name = "Map"};
             for (var x = 0; x < game.MapWidth; x++)
             {
                 for (var y = 0; y < game.MapHeight; y++)
@@ -36,12 +41,44 @@ namespace Survival.Views
                         game.Human.X = posX;
                         game.Human.Y = posY;
                         game.Act(game.Human);
-                        DrawMap();
+                        game.IsHumanTurn = false;
+                        var humanMap = DrawMap();
+                        Controls.Add(humanMap);
+                        Controls.Remove(map);
+                        if (game.IsOver.Item1) GetResult();
+                        GetAITurn();
+                        var aiMap = DrawMap();
+                        Controls.Add(aiMap);
+                        Controls.Remove(humanMap);
+                        if (game.IsOver.Item1) GetResult();
+                        game.IsHumanTurn = true;
+                       /* game.Human.X = posX;
+                        game.Human.Y = posY;
+                        if (game.IsHumanTurn) return;
+                        game.Act(game.Human);
+                        game.IsHumanTurn = false;*/
+                        
                     };
-                    layout.Controls.Add(btn); 
+                    map.Controls.Add(btn); 
                 }
             }
-            return layout;
+            return map;
+        }
+
+        private TableLayoutPanel GetAITurn()
+        {
+            ((Ai)game.Ai).GenerateRandomTurn(game);
+            Text = $"AI position: ({game.Ai.X}, {game.Ai.Y})";
+            game.Act(game.Ai);
+            var map = DrawMap();
+            game.IsHumanTurn = true;
+            return map;
+        }
+        private void GetResult()
+        {
+            var text = game.IsOver.Item2 == game.Human ? "Вы победили!" : "Вы проиграли(";
+            var result = MessageBox.Show(text, "", MessageBoxButtons.OK);
+            if (result == DialogResult.OK) Close();
         }
 
         private static Image GetImage(ICell cell)
@@ -78,6 +115,14 @@ namespace Survival.Views
         private static Image ResizeImage(Image imgToResize, Size size)
         {
             return new Bitmap(imgToResize, size);
+        }
+
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+            Controls.Clear();
+            ClientSize = new Size((game.MapHeight + 1) * 100, (game.MapWidth + 1) * 100);
+            Controls.Add(game.IsHumanTurn ? DrawMap() : GetAITurn());
+            if(game.IsOver.Item1) GetResult();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Windows.Forms;
 using Survival.Views;
 
 namespace Survival
@@ -14,9 +15,9 @@ namespace Survival
         public ICell[,] Map;
         public Player Human;
         public Player Ai;
-        public bool HumanTurn = true;
+        public bool IsHumanTurn = true;
         
-        public bool IsOver;
+        public (bool, Player) IsOver;
         public static readonly (int,int)[] Neighbours = {(0, -1), (0, 1), (-1, 0), (1, 0)};
 
         public int MapWidth => Map.GetLength(0);
@@ -30,28 +31,29 @@ namespace Survival
         private void CreatePlayers()
         {
             Human = new Player(Color.Blue);
-            Ai = new AI(Color.Red);
+            Ai = new Ai(Color.Red);
         }
 
         public void Start(int x, int y)
         {
             CreateMap(x,y);
-            CreatePlayers();
-            //здесь идет смена стадии старта на стадию непосредственно игры  
+            CreatePlayers(); 
         }
 
         public void Act(Player player)
         {
             Map[player.X, player.Y].Act(this, player);
+            IsOver = (IsPlayerWinner(player), player);
         }
 
         public void ChangeMap(Player player)
         {
             Map[player.X, player.Y].ChangeInConflict(this, player);
+            IsOver = (IsPlayerWinner(player), player);
         }
         
 
-        public bool IsHumanWinner()
+        public bool IsPlayerWinner(Player player)
         {
             var queue = new Queue<Point>();
             var visited = new HashSet<Point>();
@@ -61,19 +63,18 @@ namespace Survival
                 var point = queue.Dequeue();
                 if (point.X < 0 || point.X >= MapWidth || point.Y < 0 || point.Y >= MapHeight) continue;
                 if (visited.Contains(point)) continue;
-                // лучше название цвета заменить на говорящее значение, а потом при отрисовке в соответствии с состоянием выбирать цвет
-                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).Color != Color.Blue) return false;
+                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).Color == Color.Gray) continue;
+                if (Map[point.X, point.Y] is ColorCell && ((ColorCell)Map[point.X, point.Y]).Color != player.Color) return false;
                 visited.Add(point);
                 
                 for (var dy = -1; dy <= 1; dy++)
                 for (var dx = -1; dx <= 1; dx++)
-                    if (dx != 0 && dy != 0) continue;
-                    else queue.Enqueue(new Point { X = point.X + dx, Y = point.Y + dy });
-
+                    if (dx != dy && dx != -dy) 
+                        queue.Enqueue(new Point { X = point.X + dx, Y = point.Y + dy });
             }
-
             return true;
         }
+        
         // Если это только в тестах используется, то лучше сделать какой-нибудь GameTestExtensions и туда это засунуть
         public IEnumerable<string> MapToString()
         {

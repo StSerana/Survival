@@ -1,6 +1,6 @@
 ﻿namespace Survival
 {
-    public class MapCreator
+    public static class MapCreator
     {
         public static ICell[,] CreateMap(int width, int height)
         {

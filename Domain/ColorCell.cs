@@ -5,6 +5,8 @@
         // оба поля превратить в свойства с закрытыми сеттерами
         public Color Color { get; }
         public State State { get; }
+        
+        public static readonly ColorCell EmptyCell = new ColorCell(State.Empty, Color.Gray);
 
         public ColorCell(State state, Color color)
         {
@@ -26,11 +28,6 @@
             };
         }
 
-        public int GetDrawingPriority()
-        {
-            return 1;
-        }
-
         public void Act(Game game, Player player)
         {
             if (Color != player.Color) return;
@@ -42,15 +39,14 @@
                     break;
                 case State.Three:
                 {
-                    // переименовать item1 и item2 в deltaX и deltaY
-                    foreach (var (item1, item2) in Game.Neighbours)
+                    foreach (var (dx, dy) in Game.Neighbours)
                     {
                         var current = new Player(player.Color){X = player.X, Y = player.Y};
-                        current.X += item1;
-                        current.Y += item2;
+                        current.X += dx;
+                        current.Y += dy;
                         game.ChangeMap(current);
                     }
-                    game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+                    game.Map[player.X, player.Y] = EmptyCell;
                     break;
                 }
             }
@@ -62,15 +58,16 @@
                 game.Map[player.X, player.Y] = new ColorCell(State + 1, player.Color);
             else
             {
+                game.Map[player.X, player.Y] = EmptyCell;
                 // повторение кода выше
-                foreach (var (item1, item2) in Game.Neighbours)
+                foreach (var (dx, dy) in Game.Neighbours)
                 {
                     var current = player;
-                    current.X += item1;
-                    current.Y += item2;
+                    current.X += dx;
+                    current.Y += dy;
                     game.ChangeMap(current);
                 }
-                game.Map[player.X, player.Y] = new ColorCell(State.Empty, Color.Gray);
+                
             }
                 
         }

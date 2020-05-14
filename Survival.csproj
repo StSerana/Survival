@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\WMPLib.1.0.0\lib\AxInterop.WMPLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Interop.WMPLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\WMPLib.1.0.0\lib\Interop.WMPLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -101,9 +109,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Source" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Files\BlueOne.jpg" />
     <Content Include="Files\BlueThree.jpg" />
     <Content Include="Files\BlueTwo.jpg" />
@@ -123,6 +128,8 @@
     <Content Include="Resources\RedTwo.jpg" />
     <Content Include="Resources\StartBtn.png" />
     <Content Include="Resources\Wall.jpg" />
+    <Content Include="Resources\bgSound.mp3" />
+    <Content Include="Views\bgSound.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

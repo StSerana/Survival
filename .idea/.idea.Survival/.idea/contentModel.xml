@@ -40,6 +40,7 @@
         <e p="Settings.settings" t="Include" />
       </e>
       <e p="Resources" t="Include">
+        <e p="bgSound.mp3" t="Include" />
         <e p="BlueOne.jpg" t="Include" />
         <e p="BlueThree.jpg" t="Include" />
         <e p="BlueTwo.jpg" t="Include" />
@@ -66,6 +67,7 @@
         <e p="SurvivalTests.csproj" t="IncludeRecursive" />
       </e>
       <e p="Views" t="Include">
+        <e p="bgSound.mp3" t="Include" />
         <e p="GameForm.cs" t="Include" />
         <e p="GameForm.Designer.cs" t="Include" />
         <e p="GameForm.resx" t="Include" />

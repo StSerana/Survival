@@ -42,7 +42,7 @@ namespace Survival.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 561);
             this.Name = "GameForm";
-            this.Text = "GameForm";
+            this.Load += new System.EventHandler(this.GameForm_Load);
             ((System.ComponentModel.ISupportInitialize) (this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
         }
