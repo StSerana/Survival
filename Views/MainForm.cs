@@ -17,7 +17,7 @@ namespace Survival.Views
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            var gameForm = new GameForm(this);
+            var gameForm = new GameForm1(this);
             gameForm.Show();
             Hide();
         }

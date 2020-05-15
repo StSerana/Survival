@@ -11,11 +11,10 @@ namespace Survival
 {
     public class Game
     {
-        // сеттеры закрыть, >>статику убрать<< (кроме Neighbours и т.п.)
         public ICell[,] Map;
         public Player Human;
         public Player Ai;
-        public bool IsHumanTurn = true;
+        public bool IsHumanTurn;
         
         public (bool, Player) IsOver;
         public static readonly (int,int)[] Neighbours = {(0, -1), (0, 1), (-1, 0), (1, 0)};
@@ -75,43 +74,5 @@ namespace Survival
             return true;
         }
         
-        // Если это только в тестах используется, то лучше сделать какой-нибудь GameTestExtensions и туда это засунуть
-        public IEnumerable<string> MapToString()
-        {
-            for (var x = 0; x < MapWidth; x++)
-            {
-                var map = new StringBuilder();
-                for (var y = 0; y < MapHeight; y++)
-                {
-                    switch (Map[x, y])
-                    {
-                        case Wall _:
-                            map.Append("W");
-                            break;
-                        case Bomb _:
-                            map.Append("B");
-                            break;
-                        case ColorCell _ when ((ColorCell) Map[x, y]).Color == Color.Red:
-                            map.Append("A" + (int)((ColorCell) Map[x, y]).State);
-                            break;
-                        case ColorCell _ when ((ColorCell) Map[x, y]).Color == Color.Gray:
-                            map.Append("E" + (int)((ColorCell) Map[x, y]).State);
-                            break;
-                        default:
-                            map.Append("H" + (int)((ColorCell) Map[x, y]).State);
-                            break;
-                    }
-                }
-
-                yield return map.ToString();
-            }
-        }
-
-        // Глагол в начале названия метода. Снова метод, актуальный только для тестирования
-        public static bool AreEqual(IEnumerable<string> m1, IReadOnlyList<string> m2)
-        {
-            // Убрать отрицаение и вместо Any сделать All
-            return !m1.Where((t, i) => !t.Equals(m2[i])).Any();
-        }
     }
 }

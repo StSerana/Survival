@@ -2,10 +2,6 @@
 {
     public class Bomb : ICell
     {
-        // Лучше два следующих метода выделить в отедельный интерфейс, какой-нибудь IDrawingElement
-        // Так же эти методы по большому счету используются в представлении, возможно их стоит вынести на уровень представления
-        // Draw(ICell cell) => cell is Wall => DrawWall(cell);
-
         public void Act(Game game, Player player)
         {
         }

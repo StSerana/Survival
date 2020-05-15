@@ -59,7 +59,6 @@
             else
             {
                 game.Map[player.X, player.Y] = EmptyCell;
-                // повторение кода выше
                 foreach (var (dx, dy) in Game.Neighbours)
                 {
                     var current = player;

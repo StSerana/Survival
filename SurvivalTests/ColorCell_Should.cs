@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Survival;
 using FluentAssertions;
 
+using static SurvivalTests.GameTestExtensions;
+
 namespace SurvivalTests
 {
     [TestFixture]
@@ -28,8 +30,7 @@ namespace SurvivalTests
             game.Human.X = 1;
             game.Human.Y = 1;
             game.Act(game.Human);
-            var actualMap = game.MapToString().ToList();
-            //Assert.IsTrue(game.MapsAreEqual(expectedMap, actualMap));
+            var actualMap = MapToString(game).ToList();
             expectedMap.Should().Contain(actualMap);
         }
         
@@ -38,12 +39,11 @@ namespace SurvivalTests
         {
             var game = new Game();
             game.Start(4,4);
-            var expectedMap = new List<string>{"WWWW","WE0A1W","WA1H3W","WWWW"};
+            var expectedMap = new List<string> {"WWWW", "WA2E0W", "WE0H3W", "WWWW"};
             game.Ai.X = 1;
             game.Ai.Y = 1;
             game.Act(game.Ai);
-            var actualMap = game.MapToString().ToList();
-            //Assert.IsTrue(game.MapsAreEqual(expectedMap, actualMap));
+            var actualMap = MapToString(game).ToList();
             expectedMap.Should().Contain(actualMap);
         }
 
@@ -59,8 +59,7 @@ namespace SurvivalTests
             game.Human.X = 2;
             game.Human.Y = 2;
             game.Act(game.Human);
-            var actualMap = game.MapToString().ToList();
-            //Assert.IsTrue(game.MapsAreEqual(expectedMap, actualMap));
+            var actualMap = MapToString(game).ToList();
             expectedMap.Should().Contain(actualMap);
         }
     }

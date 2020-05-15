@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using Survival;
-using FluentAssertions;
-//дописать fluent
+using static SurvivalTests.GameTestExtensions;
 
 namespace SurvivalTests
 {
@@ -17,8 +17,8 @@ namespace SurvivalTests
             var game = new Game();
             game.Start(4, 4);
             var expectedMap = new List<string>{"WWWW","WA3E0W","WE0H3W","WWWW"};
-            var actualMap = game.MapToString().ToList();
-            Assert.IsTrue(Game.AreEqual(expectedMap, actualMap));
+            var actualMap = MapToString(game).ToList();
+            expectedMap.Should().Contain(actualMap);
         }
 
         [Test]
@@ -43,10 +43,8 @@ namespace SurvivalTests
         {
             var game = new Game();
             game.Start(4, 4);
-            foreach (var line in game.MapToString()) Console.WriteLine(line);
             var answer = game.IsPlayerWinner(game.Ai);
             Assert.IsFalse(answer);
         }
-        //лишний отступ
     }
 }

@@ -18,3 +18,4 @@ C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Propert
 C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\AxInterop.WMPLib.dll
 C:\Users\админ\Documents\sharp_projects\Survival\bin\Debug\Interop.WMPLib.dll
 C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.csproj.CopyComplete
+C:\Users\админ\Documents\sharp_projects\Survival\obj\Debug\Survival.Views.GameForm1.resources

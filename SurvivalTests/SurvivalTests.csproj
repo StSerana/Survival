@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Bomb_Should.cs" />
     <Compile Include="ColorCell_Should.cs" />
+    <Compile Include="GameTestExtensions.cs" />
     <Compile Include="Map_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

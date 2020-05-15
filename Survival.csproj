@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Domain\AI.cs" />
     <Compile Include="Domain\Bomb.cs" />
-    <Compile Include="Domain\CellProperties.cs" />
+    <Compile Include="Domain\Color.cs" />
     <Compile Include="Domain\ColorCell.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\ICell.cs" />
     <Compile Include="Domain\MapCreator.cs" />
     <Compile Include="Domain\Player.cs" />
+    <Compile Include="Domain\State.cs" />
     <Compile Include="Domain\Wall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +79,12 @@
     <Compile Include="Views\GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\GameForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GameForm1.Designer.cs">
+      <DependentUpon>GameForm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GameForm1.resx">
+      <DependentUpon>GameForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

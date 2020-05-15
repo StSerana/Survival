@@ -9,12 +9,13 @@
       <e p="Domain" t="Include">
         <e p="AI.cs" t="Include" />
         <e p="Bomb.cs" t="Include" />
-        <e p="CellProperties.cs" t="Include" />
+        <e p="Color.cs" t="Include" />
         <e p="ColorCell.cs" t="Include" />
         <e p="Game.cs" t="Include" />
         <e p="ICell.cs" t="Include" />
         <e p="MapCreator.cs" t="Include" />
         <e p="Player.cs" t="Include" />
+        <e p="State.cs" t="Include" />
         <e p="Wall.cs" t="Include" />
       </e>
       <e p="Files" t="Include">
@@ -58,6 +59,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Bomb_Should.cs" t="Include" />
         <e p="ColorCell_Should.cs" t="Include" />
+        <e p="GameTestExtensions.cs" t="Include" />
         <e p="Map_Should.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
@@ -71,6 +73,9 @@
         <e p="GameForm.cs" t="Include" />
         <e p="GameForm.Designer.cs" t="Include" />
         <e p="GameForm.resx" t="Include" />
+        <e p="GameForm1.cs" t="Include" />
+        <e p="GameForm1.Designer.cs" t="Include" />
+        <e p="GameForm1.resx" t="Include" />
         <e p="MainForm.cs" t="Include" />
         <e p="MainForm.Designer.cs" t="Include" />
         <e p="MainForm.resx" t="Include" />
